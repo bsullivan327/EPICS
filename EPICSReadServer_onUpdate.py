@@ -2,6 +2,27 @@ import time
 import epics
 from epics import PV
 
+#address's of shared variables
+base_address="ALEPH-WORKSTATION-01:server_library:"
+#base_address="DESKTOP-73SSMS3:server_lib:"
+timeStamp_address=base_address+"timeStamp.VAL"
+frontend1_address=base_address+"frontend1.VAL"
+frontend2_address=base_address+"frontend2.VAL"
+QuantaRay_address=base_address+"QuantaRay.VAL"
+slab2_address=base_address+"slab2.VAL"
+slab3_address=base_address+"slab3.VAL"
+slab4_address=base_address+"slab4.VAL"
+slab5_address=base_address+"slab5.VAL"
+slab7_address=base_address+"slab7.VAL"
+slab8_address=base_address+"slab8.VAL"
+slab9_address=base_address+"slab9.VAL"
+slab10_address=base_address+"slab10.VAL"
+stage1_address=base_address+"stage1.VAL"
+stage2_address=base_address+"stage2.VAL"
+stage3_address=base_address+"stage3.VAL"
+stage4_address=base_address+"stage4.VAL"
+stage5_address=base_address+"stage5.VAL"
+
 #Variables
 timeStamp=""
 frontend1=0
@@ -24,13 +45,15 @@ stage5=0
 
 #Callbacks when any value is updated
 def valueUpdatedCallback(value=None,pvname=None, **kw):
-	print("Name:%s | Value:%f" % (pvname[36:-4],  value))
+	global base_address
+	print("Name:%s | Value:%f" % (pvname[len(base_address):-4],  value))
 
 #Callback for timeStamp update
 def timeStampCallback(value=None,pvname=None, **kw):
+	global base_address
 	global timeStamp
 	timeStamp=value
-	print("Name:%s | Value:%s" % (pvname[36:-4],  value))
+	print("Name:%s | Value:%s" % (pvname[len(base_address):-4],  value))
 
 #Callback for frontend1 update
 def frontend1Callback(value=None, **kw):
@@ -112,26 +135,6 @@ def stage5Callback(value=None, **kw):
 	global stage5
 	stage5=value
 
-#address's of shared variables
-base_address="ALEPH-WORKSTATION-01:server_library:"
-#base_address="DESKTOP-73SSMS3:server_lib:"
-timeStamp_address=base_address+"timeStamp.VAL"
-frontend1_address=base_address+"frontend1.VAL"
-frontend2_address=base_address+"frontend2.VAL"
-QuantaRay_address=base_address+"QuantaRay.VAL"
-slab2_address=base_address+"slab2.VAL"
-slab3_address=base_address+"slab3.VAL"
-slab4_address=base_address+"slab4.VAL"
-slab5_address=base_address+"slab5.VAL"
-slab7_address=base_address+"slab7.VAL"
-slab8_address=base_address+"slab8.VAL"
-slab9_address=base_address+"slab9.VAL"
-slab10_address=base_address+"slab10.VAL"
-stage1_address=base_address+"stage1.VAL"
-stage2_address=base_address+"stage2.VAL"
-stage3_address=base_address+"stage3.VAL"
-stage4_address=base_address+"stage4.VAL"
-stage5_address=base_address+"stage5.VAL"
 
 #Connect process variables
 #Configured to call both the specific and the general callback functions when the value of the variable is updated
