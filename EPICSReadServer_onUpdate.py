@@ -23,7 +23,7 @@ stage3_address=base_address+"stage3.VAL"
 stage4_address=base_address+"stage4.VAL"
 stage5_address=base_address+"stage5.VAL"
 
-#Variables
+#Local Variables
 timeStamp=""
 frontend1=0
 frontend2=0
@@ -43,7 +43,7 @@ stage4=0
 stage5=0
 
 
-#Callbacks when any value is updated
+#Callback to print name and value when any value is updated
 def valueUpdatedCallback(value=None,pvname=None, **kw):
 	global base_address
 	print("Name:%s | Value:%f" % (pvname[len(base_address):-4],  value))
